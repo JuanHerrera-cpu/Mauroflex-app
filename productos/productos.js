@@ -40,21 +40,46 @@ const productos = [
         ]
     }
 ];
+
 const contenedor = document.getElementById("contenedor-productos");
 
 productos.forEach(producto => {
     contenedor.innerHTML += `
-        <div>
+        <div class="card">
             <h3>${producto.nombre}</h3>
             <img src="${producto.imagen}">
-         <select onchange="cambiarPrecio(this)">
-               <option>Sencillo</option>
-               <option>Doble</option>
-               <option>Queen</option>
-               <option>King</option>
-         </select>
-        <p style="color:black;">Precio: $0</p> 
 
+            <select onchange="cambiarPrecio(this)">
+                <option value="${producto.tamaños[0].precio}">Sencillo</option>
+                <option value="${producto.tamaños[1].precio}">Doble</option>
+                <option value="${producto.tamaños[2].precio}">Queen</option>
+                <option value="${producto.tamaños[3].precio}">King</option>
+            </select>
+
+            <p>Precio: $0</p>
+
+            <button onclick="comprar(this)">Comprar</button>
         </div>
     `;
 });
+
+function cambiarPrecio(select) {
+    let precio = select.value;
+    let parrafo = select.nextElementSibling;
+
+    parrafo.textContent = "Precio: $" + precio;
+}
+function comprar(boton) {
+
+    let card = boton.parentElement;
+
+    let nombre = card.querySelector("h3").textContent;
+
+    let select = card.querySelector("select");
+    let tamaño = select.options[select.selectedIndex].text;
+
+    let precio = select.value;
+
+    alert("Compraste: " + nombre + " | Tamaño: " + tamaño + " | Precio: $" + precio);
+
+}
