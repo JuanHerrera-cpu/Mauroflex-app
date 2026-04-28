@@ -1,26 +1,41 @@
+const mysql = require("mysql2");
 const express = require("express");
 const path = require("path");
 
 const app = express();
 
-// 👇 PRIMERO la ruta principal
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "Public", "Inicio.html"));
+const conexion = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "Isabela01*", 
+    database: "mauroflex"
 });
 
-// 👇 DESPUÉS static
+conexion.connect(err => {
+    if (err) {
+        console.log("Error de conexión:", err);
+    } else {
+        console.log("Conectado a MySQL");
+    }
+});
+
+// ✅ STATIC PRIMERO
 app.use(express.static(path.join(__dirname, "Public")));
+
+// ✅ LUEGO RUTA
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "Public", "login.html"));
+});
 
 // API
 app.get("/productos", (req, res) => {
-    res.json([
-        { nombre: "Semiortopedico resortado", precio: 650000 },
-        { nombre: "Ortopedico cassata", precio: 700000 },
-        { nombre: "Resortado pillotow", precio: 850000 },
-        { nombre: "Cassata pillotow", precio: 900000 },
-        { nombre: "Resortado superpillotow", precio: 1200000 },
-        { nombre: "Superpillotow cassata", precio: 1500000 }
-    ]);
+    conexion.query("SELECT * FROM productos", (err, resultados) => {
+        if (err) {
+            console.log("Error en query:", err);
+            return res.status(500).send("Error en la base de datos");
+        }
+        res.json(resultados);
+    });
 });
 
 app.listen(3000, () => {
