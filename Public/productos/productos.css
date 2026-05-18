@@ -1,117 +1,195 @@
-/* Fondo general */
+/* =========================
+   ESTILOS GENERALES
+========================= */
+
+/* Fondo general de la página */
 body {
+
+    /* Tipo de letra */
     font-family: Arial, sans-serif;
+
+    /* Color de fondo */
     background-color: #f5f5f5;
+
+    /* Elimina márgenes */
     margin: 0;
+
+    /* Espaciado interno */
     padding: 20px;
 }
 
-/* Título */
-h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
 
-/* Contenedor tipo tienda */
+/* =========================
+   CONTENEDOR DE PRODUCTOS
+========================= */
+
+/* Organiza los productos tipo tienda */
 #contenedor-productos {
+
+    /* Espacio debajo del header */
+    margin-top: 20px;
+
+    /* Activa grid */
     display: grid;
+
+    /* Hace responsive las tarjetas */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    /* Espacio entre tarjetas */
     gap: 20px;
 }
 
-/* Tarjeta */
+
+/* =========================
+   TARJETAS
+========================= */
+
+/* Diseño principal de cada tarjeta */
 .card {
+
+    /* Fondo blanco */
     background-color: white;
-    padding: 20px;
+
+    /* Espaciado interno */
+    padding: 15px;
+
+    /* Bordes redondeados */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    /* Sombra suave */
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+
+    /* Centra contenido */
     text-align: center;
+
+    /* Animación suave */
     transition: transform 0.2s;
+
+    /* Tamaño uniforme */
+    width: 220px;
+
+    /* FLEX para organizar contenido */
+    display: flex;
+
+    /* Organización vertical */
+    flex-direction: column;
+
+    /* Separa contenido */
+    justify-content: space-between;
+
+    /* Altura uniforme */
+    min-height: 340px;
 }
 
-/* Hover tarjeta */
+
+/* Efecto hover */
 .card:hover {
+
+    /* Hace pequeño zoom */
     transform: scale(1.05);
 }
 
-/* Imagen */
-.card img {
+
+/* =========================
+   IMAGENES
+========================= */
+
+/* Imagen del producto */
+.img-producto {
+
+    /* Ocupa todo el ancho */
     width: 100%;
+
+    /* Altura fija */
     height: 150px;
+
+    /* Ajusta sin deformar */
     object-fit: cover;
-    border-radius: 10px;
+
+    /* Bordes redondeados */
+    border-radius: 8px;
 }
 
-/* Nombre */
+
+/* =========================
+   TITULO PRODUCTO
+========================= */
+
+/* Nombre del producto */
 .card h3 {
+
+    /* Espacio inferior */
     margin-bottom: 10px;
+
+    /* Tamaño del texto */
+    font-size: 22px;
 }
 
-/* Precio */
+
+/* =========================
+   PRECIOS
+========================= */
+
+/* Texto del precio */
 .card p {
-    color: #4a148c; /* morado */
-}
 
-.card button {
-    background-color: #4a148c;
-    
-}
+    /* Color morado */
+    color: #4a148c;
 
-.card button:hover {
-    background-color: #4a148c;
-}
-/* Barra superior */
+    /* Tamaño del texto */
+    font-size: 18px;
 
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    background-color: #a467c9; /* morado */
-    color: white;
-    padding: 15px;
-    margin-bottom: 30px;
-}
-
-/* Título dentro del navbar */
-.navbar h2 {
-    font-size: 24px;
+    /* Negrita */
     font-weight: bold;
 }
 
-/* Logo */
+
+/* =========================
+   BOTONES
+========================= */
+
+/* Botón comprar */
+.card button {
+
+    /* Fondo morado */
+    background-color: #5a4fcf;
+
+    /* Texto blanco */
+    color: white;
+
+    /* Quita borde */
+    border: none;
+
+    /* Espaciado */
+    padding: 6px 12px;
+
+    /* Bordes redondeados */
+    border-radius: 5px;
+
+    /* Cursor mano */
+    cursor: pointer;
+}
+
+
+/* Efecto hover botón */
+.card button:hover {
+
+    /* Morado oscuro */
+    background-color: #4a148c;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+/* Logo de la empresa */
 .logo {
+
+    /* Tamaño */
     width: 80px;
     height: 80px;
+
+    /* Forma circular */
     border-radius: 50%;
-}
-.card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 8px;
-    width: 220px;
-    display: inline-block;
-}
-
-.card img {
-    width: 100%;
-    border-radius: 8px;
-}
-.card {
-    width: 220px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 10px;
-    display: inline-block;
-    vertical-align: top;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.img-producto {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
 }

@@ -7,9 +7,10 @@
 </head>
 
 <body>
+    <!-- Contenedor del Header reutilizable -->
+<div id="header"></div>
     <header class="navbar">
-    <img src="../img/logo.jpeg" class="logo">
-    <h2>Colchones Mauroflex</h2>
+   
 </header>
 
 
@@ -17,6 +18,13 @@
 
     <!-- SIEMPRE AL FINAL -->
     <script src="productos.js"></script>
+    <!-- Conexión del componente Header -->
+<script src="/componentes/header.js"></script>
+
+<!-- Ejecuta el Header -->
+<script>
+    cargarHeader();
+</script>
 
 </body>
 </html>

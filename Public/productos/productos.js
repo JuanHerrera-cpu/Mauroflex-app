@@ -3,6 +3,7 @@ console.log("JS funcionando");
 fetch("http://localhost:3000/productos")
     .then(res => res.json())
     .then(data => {
+        console.log("DATOS:", data);
         mostrarProductos(data);
     })
     .catch(err => {
@@ -15,21 +16,24 @@ function mostrarProductos(productos) {
 
     productos.forEach(producto => {
 
-        console.log("PRODUCTO:", producto);
+        console.log("PRODUCTO:", producto.nombre);
 
-     let imagen = "/img/default.jpeg";
+        // 🧠 IMAGEN POR DEFECTO
+        let imagen = "/img/Memory.jpeg";
 
-const nombre = (producto.nombre ?? "").toLowerCase();
+        const nombre = (producto.nombre ?? "").toLowerCase();
 
-if (nombre.includes("memory")) {
-    imagen = "/img/Memory.jpeg";
-} 
-else if (nombre.includes("pillotow")) {
-    imagen = "/img/Pillotow.jpeg";
-} 
-else if (nombre.includes("superpillotow")) {
-    imagen = "/img/Superpillotow.jpeg";
-}
+        // 🔥 AJUSTADO A TEXTO REAL (MÁS FLEXIBLE)
+        if (nombre.includes("memory")) {
+            imagen = "/img/Memory.jpeg";
+        } 
+        else if (nombre.includes("pillow") || nombre.includes("resortado")) {
+            imagen = "/img/Pillotow.jpeg";
+        } 
+        else if (nombre.includes("super")) {
+            imagen = "/img/superpillotow.jpeg";
+        }
+
         // 🧱 CREAR CARD
         const card = `
             <div class="card">
@@ -38,7 +42,6 @@ else if (nombre.includes("superpillotow")) {
 
                 <h3>${producto.nombre || "Sin nombre"}</h3>
 
-                <!-- 🔥 SOLO UN PRECIO (IMPORTANTE) -->
                 <p>Precio: $<span class="precio-final">${producto.precio || 0}</span></p>
 
                 <select onchange="cambiarPrecio(this, ${producto.precio || 0})">
@@ -60,17 +63,16 @@ else if (nombre.includes("superpillotow")) {
     });
 }
 
-// 🔥 CAMBIAR PRECIO SEGÚN MEDIDA
+// 🔥 CAMBIAR PRECIO
 function cambiarPrecio(select, precioBase) {
     const factor = parseFloat(select.value);
     const nuevoPrecio = precioBase * factor;
 
     const contenedor = select.parentElement;
-
-    // 🧠 actualiza SOLO el span
     contenedor.querySelector(".precio-final").innerText = nuevoPrecio.toFixed(2);
 }
 
+// 🛒 SIMULACIÓN DE COMPRA
 function comprar(nombre, precio) {
     alert("Compraste: " + nombre + " | Precio base: $" + precio);
 }

@@ -8,14 +8,17 @@
 </head>
 
 <body>
+    <!-- Espacio donde aparecerá el header -->
+<div id="header"></div>
 
 <div class="layout">
 
     <!-- MENÚ -->
     <div class="sidebar">
 
-        <!-- LOGO PEQUEÑO -->
-        <img src="img/logo.jpeg" alt="Mauroflex" class="logo">
+        <!--
+<img src="img/logo.jpeg" alt="Mauroflex" class="logo">
+-->
 
         <a href="menu.html">Inicio</a>
         <a href="Registro.html">Usuarios</a>
@@ -37,6 +40,13 @@
 </div>
 
 <script src="menu.js"></script>
+<!-- Conecta el archivo header.js -->
+<script src="/componentes/header.js"></script>
+
+<!-- Ejecuta la función para mostrar el header -->
+<script>
+    cargarHeader();
+</script>
 
 </body>
 </html>

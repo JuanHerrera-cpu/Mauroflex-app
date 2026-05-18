@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-   <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+
+  <style>
     body{
       display: flex;
       justify-content: center;
@@ -10,48 +14,46 @@
       flex-direction: column;
     }
   </style>
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
+
 <body>
-    <h3>REGISTRO DE USUARIO</h3>
-  <img src="../img\logo.jpeg" width="180">
- <form id="formRegistro">
 
-  <label>Nombres</label><br>
-  <input type="text" id="nombres" required><br><br>
+  <h3>REGISTRO DE USUARIO</h3>
 
-  <label>Apellidos</label><br>
-  <input type="text" id="apellidos" required><br><br>
+  <img src="/img/logo.jpeg" width="180">
 
-  <label>Tipo de documento</label><br>
-<select id="tipoDocumento" required>
-  <option value="">Seleccione...</option>
-  <option value="CC">Cédula de ciudadanía</option>
-  <option value="NIT">NIT</option>
-  <option value="CE">Cédula extranjera</option>
-</select><br><br>
+  <!-- 🔥 FORM CONECTADO AL BACKEND -->
+  <form action="/registro" method="POST">
 
-<label>Número de documento</label><br>
-<input type="text" id="documento" pattern="[0-9]+" inputmode="numeric" required><br><br>
+    <label>Nombres</label><br>
+    <input type="text" name="nombre" required><br><br>
 
+    <label>Apellidos</label><br>
+    <input type="text" name="apellido" required><br><br>
 
-  <label>Correo electronico</label><br>
-  <input type="email" id="correo" required><br><br>
+    <label>Tipo de documento</label><br>
+    <select name="tipoDocumento" required>
+      <option value="">Seleccione...</option>
+      <option value="CC">Cédula de ciudadanía</option>
+      <option value="NIT">NIT</option>
+      <option value="CE">Cédula extranjera</option>
+    </select><br><br>
 
-  <label>Contraseña</label><br> 
-  <input type="password" id="password" required><br><br>
+    <label>Número de documento</label><br>
+    <input type="text" name="documento" pattern="[0-9]+" required><br><br>
 
-  <label>Confirmar contraseña</label><br>
-  <input type="password" id="confirmPassword" required><br><br>
+    <label>Correo electronico</label><br>
+    <input type="email" name="correo" required><br><br>
 
-  <button type="submit">Enviar</button>
+    <label>Contraseña</label><br> 
+    <input type="password" name="clave" required><br><br>
 
-  <div id="error"></div>
+    <label>Confirmar contraseña</label><br>
+    <input type="password" required><br><br>
 
-</form>
-<script src="registro.js"></script>
+    <button type="submit">Enviar</button>
+
+  </form>
+
 </body>
 </html>

@@ -39,6 +39,6 @@ form.addEventListener("submit", function(event) {
     alert("Usuario registrado correctamente");
 
     // redirigir al login
-    window.location.href = "Inicio.html";
+   window.location.href = "login.html";
 
 });

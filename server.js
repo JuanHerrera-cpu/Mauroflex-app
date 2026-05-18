@@ -4,6 +4,14 @@ const path = require("path");
 
 const app = express();
 
+// 🧠 MIDDLEWARE PRIMERO (IMPORTANTE)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// 🧠 ARCHIVOS ESTÁTICOS
+app.use(express.static(path.join(__dirname, "Public")));
+
+// 🧠 CONEXIÓN DB
 const conexion = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -19,15 +27,12 @@ conexion.connect(err => {
     }
 });
 
-// ✅ STATIC PRIMERO
-app.use(express.static(path.join(__dirname, "Public")));
-
-// ✅ LUEGO RUTA
+// 🧠 RUTA PRINCIPAL
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "Public", "login.html"));
 });
 
-// API
+// 🧠 API PRODUCTOS
 app.get("/productos", (req, res) => {
     conexion.query("SELECT * FROM productos", (err, resultados) => {
         if (err) {
@@ -38,6 +43,24 @@ app.get("/productos", (req, res) => {
     });
 });
 
+// 🧠 REGISTRO REAL
+app.post("/registro", (req, res) => {
+    const { nombre, apellido, correo, clave } = req.body;
+
+    const sql = "INSERT INTO usuarios (nombre, apellido, correo, clave) VALUES (?, ?, ?, ?)";
+
+    conexion.query(sql, [nombre, apellido, correo, clave], (err, resultado) => {
+        if (err) {
+            console.log("Error al registrar:", err);
+            return res.send("Error al registrar");
+        }
+
+        console.log("Usuario guardado en DB");
+        res.redirect("/login.html");
+    });
+});
+
+// 🧠 SERVIDOR AL FINAL
 app.listen(3000, () => {
     console.log("Servidor corriendo en puerto 3000");
 });
