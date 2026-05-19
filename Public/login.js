@@ -1,11 +1,23 @@
-document.getElementById("formLogin").addEventListener("submit", function(e) {
+document.getElementById("formLogin").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     let correo = document.getElementById("correo").value;
+    let clave = document.getElementById("clave").value;
 
-    // 💾 guardar sesión
-    sessionStorage.setItem("usuarioActivo", correo);
+    const res = await fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ correo, clave })
+    });
 
-    // 🚀 redirigir
-    window.location.href = "menu.html";
+    const data = await res.json();
+
+    if (data.success) {
+        sessionStorage.setItem("usuarioActivo", correo);
+        window.location.href = "menu.html";
+    } else {
+        alert("Usuario o contraseña incorrectos");
+    }
 });
