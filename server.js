@@ -1,6 +1,7 @@
 const mysql = require("mysql2");
 
 const express = require("express");
+
 // 🔥 IMPORTAR CORS
 const cors = require("cors");
 
@@ -9,10 +10,10 @@ const path = require("path");
 
 // 🔥 CREA LA APLICACIÓN EXPRESS
 const app = express();
+
+
 // 🔥 ACTIVAR CORS
 app.use(cors());
-
-
 
 
 // =========================
@@ -90,7 +91,8 @@ app.get("/", (req, res) => {
 // API PRODUCTOS
 // =========================
 
-// Obtiene productos desde MySQL
+
+// 🔥 OBTENER PRODUCTOS
 app.get("/productos", (req, res) => {
 
     conexion.query(
@@ -115,6 +117,153 @@ app.get("/productos", (req, res) => {
     );
 });
 
+
+
+
+// 🔥 CREAR PRODUCTO
+app.post("/productos", (req, res) => {
+
+    // 🔥 DATOS DEL BODY
+    const { nombre, precio } = req.body;
+
+
+    // 🔥 SQL
+    const sql = `
+    
+        INSERT INTO productos(nombre, precio)
+        
+        VALUES (?, ?)
+    `;
+
+
+    // 🔥 EJECUTAR QUERY
+    conexion.query(
+
+        sql,
+
+        [nombre, precio],
+
+        (err, resultado) => {
+
+            if (err) {
+
+                console.log(err);
+
+                return res.status(500).json({
+
+                    error: "Error al crear producto"
+                });
+            }
+
+
+            // 🔥 RESPUESTA JSON
+            res.json({
+
+                mensaje: "Producto creado correctamente",
+
+                id: resultado.insertId
+            });
+        }
+    );
+});
+
+
+
+
+// 🔥 ELIMINAR PRODUCTO
+app.delete("/productos/:id", (req, res) => {
+
+    // 🔥 OBTENER ID
+    const id = req.params.id;
+
+
+    // 🔥 SQL
+    const sql = `
+    
+        DELETE FROM productos
+        
+        WHERE id = ?
+    `;
+
+
+    // 🔥 EJECUTAR
+    conexion.query(
+
+        sql,
+
+        [id],
+
+        (err, resultado) => {
+
+            if (err) {
+
+                console.log(err);
+
+                return res.status(500).json({
+
+                    error: "Error al eliminar producto"
+                });
+            }
+
+
+            // 🔥 RESPUESTA
+            res.json({
+
+                mensaje: "Producto eliminado correctamente"
+            });
+        }
+    );
+});
+// 🔥 ACTUALIZAR PRODUCTO
+app.put("/productos/:id", (req, res) => {
+
+    // 🔥 OBTENER ID
+    const id = req.params.id;
+
+
+    // 🔥 OBTENER DATOS
+    const { nombre, precio } = req.body;
+
+
+    // 🔥 SQL
+    const sql = `
+    
+        UPDATE productos
+        
+        SET nombre = ?, precio = ?
+        
+        WHERE id = ?
+    `;
+
+
+    // 🔥 EJECUTAR
+    conexion.query(
+
+        sql,
+
+        [nombre, precio, id],
+
+        (err, resultado) => {
+
+            if (err) {
+
+                console.log(err);
+
+                return res.status(500).json({
+
+                    error: "Error al actualizar producto"
+                });
+            }
+
+
+            // 🔥 RESPUESTA
+            res.json({
+
+                mensaje: "Producto actualizado correctamente"
+            });
+        }
+    );
+});
 
 
 
