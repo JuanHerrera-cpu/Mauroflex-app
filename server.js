@@ -92,7 +92,7 @@ app.get("/", (req, res) => {
 // =========================
 
 
-// 🔥 OBTENER PRODUCTOS
+// 🛏️ OBTENER PRODUCTOS
 app.get("/productos", (req, res) => {
 
     conexion.query(
@@ -266,31 +266,22 @@ app.put("/productos/:id", (req, res) => {
 });
 
 
-
 // =========================
 // REGISTRO USUARIOS
 // =========================
 
-// Guarda usuarios en MySQL
 app.post("/registro", (req, res) => {
 
-    // Obtiene datos formulario
     const {
         nombre,
         apellido,
         correo,
         clave
-
     } = req.body;
 
-
-    // Consulta SQL
     const sql =
-
         "INSERT INTO usuarios (nombre, apellido, correo, clave) VALUES (?, ?, ?, ?)";
 
-
-    // Ejecuta inserción
     conexion.query(
 
         sql,
@@ -299,7 +290,6 @@ app.post("/registro", (req, res) => {
 
         (err, resultado) => {
 
-            // Error registro
             if (err) {
 
                 console.log("Error al registrar:", err);
@@ -307,13 +297,12 @@ app.post("/registro", (req, res) => {
                 return res.send("Error al registrar");
             }
 
-
             // Registro exitoso
             console.log("Usuario guardado en DB");
 
-
-            // Regresa al login
-            res.redirect("/login.html");
+            res.json({
+                mensaje: "Usuario registrado correctamente"
+            });
         }
     );
 });
