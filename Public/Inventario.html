@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,67 +9,82 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f0f8ff;
+            margin: 0;
+            background-color: #f5f6fa;
         }
 
         .container {
-            max-width: 800px;
-            margin: auto;
+            max-width: 900px;
+            margin: 40px auto;
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         h1 {
             text-align: center;
-            color: #803F92;
+            color: #2c2c54;
+            margin-bottom: 30px;
         }
 
         h3 {
-            color: #803F92;
+            color: #2c2c54;
+            margin-top: 20px;
         }
 
         input {
             width: 100%;
-            padding: 8px;
-            margin-top: 5px;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 15px;
         }
 
         button {
-            margin-top: 10px;
-            padding: 10px;
             width: 100%;
-            background-color: #803F92;
-            color: white;
+            padding: 12px;
+            margin-top: 10px;
             border: none;
+            border-radius: 6px;
+            background: linear-gradient(180deg, #2c2c54, #6c5ce7);
+            color: white;
+            font-size: 16px;
             cursor: pointer;
+            transition: 0.3s;
         }
 
         button:hover {
-            background-color: #6a3278;
+            background: #2c2c54;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
-            border: 1px solid #c5cae9;
+            border: 1px solid #dcdde1;
             text-align: left;
         }
 
         th {
-            background-color: #803F92;
+            background: linear-gradient(180deg, #2c2c54, #6c5ce7);
             color: white;
         }
 
         tr:nth-child(even) {
-            background-color: #e8eaf6;
+            background-color: #f8f9fc;
+        }
+
+        tr:hover {
+            background-color: #ececff;
         }
 
         .stock-bajo {
@@ -76,38 +92,53 @@
             font-weight: bold;
         }
     </style>
+
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1>Inventario de Productos - Mauroflex</h1>
+        <h1>Inventario de Productos - Mauroflex</h1>
 
-    <h3>Agregar Producto</h3>
+        <h3>Agregar Producto</h3>
 
-    <input type="text" id="producto" placeholder="Nombre del producto">
-    <input type="number" id="stock" placeholder="Cantidad en stock">
-    <input type="number" id="precio" placeholder="Precio">
+        <input type="text" id="producto" placeholder="Nombre del producto">
 
-    <button onclick="agregarProducto()">Agregar</button>
+        <input type="number" id="stock" placeholder="Cantidad en stock">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Stock</th>
-                <th>Precio Unitario</th>
-            </tr>
-        </thead>
-        <tbody id="tablaInventario">
-        </tbody>
-    </table>
+        <input type="number" id="precio" placeholder="Precio">
 
-</div>
+        <button onclick="agregarProducto()">
+            Agregar Producto
+        </button>
 
-<!-- Conexión con JavaScript -->
-<script src="inventario.js"></script>
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Producto</th>
+
+                    <th>Stock</th>
+
+                    <th>Precio Unitario</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaInventario">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="inventario.js"></script>
 
 </body>
+
 </html>

@@ -1,0 +1,59 @@
+# Endpoints de la API Mauroflex
+
+## Registro de usuarios
+
+POST http://localhost:3001/registro
+
+Descripción:
+Permite registrar un nuevo usuario en la base de datos.
+
+---
+
+## Inicio de sesión
+
+POST http://localhost:3001/login
+
+Descripción:
+Valida las credenciales del usuario para permitir el acceso al sistema.
+
+---
+
+## Consultar productos
+
+GET http://localhost:3001/productos
+
+Descripción:
+Obtiene el listado de productos registrados en la base de datos.
+
+---
+
+## Crear producto
+
+POST http://localhost:3001/productos
+
+Descripción:
+Permite registrar un nuevo producto en la base de datos.
+
+---
+
+## Actualizar producto
+
+PUT http://localhost:3001/productos/:id
+
+Descripción:
+Actualiza la información de un producto existente según su identificador.
+
+Ejemplo:
+PUT http://localhost:3001/productos/1
+
+---
+
+## Eliminar producto
+
+DELETE http://localhost:3001/productos/:id
+
+Descripción:
+Elimina un producto de la base de datos según su identificador.
+
+Ejemplo:
+DELETE http://localhost:3001/productos/1

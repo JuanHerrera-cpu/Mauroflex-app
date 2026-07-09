@@ -2,7 +2,7 @@ console.log("JS funcionando");
 
 
 // 🔥 CONSULTA PRODUCTOS DESDE EL SERVIDOR
-fetch("http://localhost:3000/productos")
+fetch("http://localhost:3001/productos")
 
     // Convierte respuesta a JSON
     .then(res => res.json())

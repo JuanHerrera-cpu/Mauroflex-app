@@ -266,10 +266,6 @@ app.put("/productos/:id", (req, res) => {
 });
 
 
-// =========================
-// REGISTRO USUARIOS
-// =========================
-
 app.post("/registro", (req, res) => {
 
     const {
@@ -297,12 +293,12 @@ app.post("/registro", (req, res) => {
                 return res.send("Error al registrar");
             }
 
-            // Registro exitoso
-            console.log("Usuario guardado en DB");
+           // Registro exitoso
+console.log("Usuario guardado en DB");
 
-            res.json({
-                mensaje: "Usuario registrado correctamente"
-            });
+res.json({
+    mensaje: "Usuario registrado correctamente"
+});
         }
     );
 });
