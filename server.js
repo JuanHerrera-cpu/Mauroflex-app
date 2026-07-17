@@ -350,14 +350,17 @@ app.post("/login", (req, res) => {
 
 
             // ✅ Usuario encontrado
-            if (resultados.length > 0) {
+          
+if (resultados.length > 0) {
 
-                res.json({
+    res.json({
 
-                    success: true
-                });
-            }
+        success: true,
+        id: resultados[0].id,
+        correo: resultados[0].correo
 
+    });
+}
 
             // ❌ Usuario incorrecto
             else {
@@ -370,7 +373,23 @@ app.post("/login", (req, res) => {
         }
     );
 });
+// =========================
+// REGISTRAR PEDIDO
+// =========================
 
+app.post("/pedidos", (req, res) => {
+
+    const pedido = req.body;
+
+    console.log("Pedido recibido:", pedido);
+
+    res.json({
+
+        mensaje: "Pedido recibido correctamente."
+
+    });
+
+});
 
 
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito - Mauroflex</title>
+
+    <link rel="stylesheet" href="carrito.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div id="header"></div>
+
+    <div class="contenedor">
+
+        <h1>🛒 Carrito de Compras</h1>
+
+        <table id="tablaCarrito">
+
+            <thead>
+
+                <tr>
+
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acción</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            </tbody>
+
+        </table>
+
+        <h2 id="total">
+            Total: $0
+        </h2>
+
+        <button id="confirmar">
+            Confirmar pedido
+        </button>
+
+    </div>
+
+    <script src="/componentes/header.js"></script>
+
+    <script>
+        cargarHeader();
+    </script>
+
+    <script src="carrito.js"></script>
+
+</body>
+
+</html>

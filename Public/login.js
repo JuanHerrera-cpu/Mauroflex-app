@@ -1,19 +1,15 @@
 // 🔥 CAPTURA EL FORMULARIO LOGIN
-document.getElementById("formLogin").addEventListener("submit", function(e) {
+document.getElementById("formLogin").addEventListener("submit", function (e) {
 
     // Evita que la página se recargue
     e.preventDefault();
-
 
     // =========================
     // OBTENER DATOS DEL FORMULARIO
     // =========================
 
     let correo = document.getElementById("correo").value;
-
     let clave = document.getElementById("clave").value;
-
-
 
     // =========================
     // ENVIAR DATOS AL SERVIDOR
@@ -28,45 +24,41 @@ document.getElementById("formLogin").addEventListener("submit", function(e) {
         },
 
         body: JSON.stringify({
-
             correo: correo,
             clave: clave
         })
-    })
 
+    })
 
     // Convierte respuesta a JSON
     .then(res => res.json())
 
-
-    // Procesa respuesta servidor
+    // Procesa respuesta del servidor
     .then(data => {
 
-
-        // ✅ SI EL LOGIN ES CORRECTO
         if (data.success) {
 
-            // Guarda sesión
-            sessionStorage.setItem("usuarioActivo", correo);
+            // Guarda el id del usuario
+            sessionStorage.setItem("idUsuario", data.id);
 
-            // Redirecciona al menú
+            // Guarda el correo
+            sessionStorage.setItem("usuarioActivo", data.correo);
+
             window.location.href = "menu.html";
-        }
 
+        } else {
 
-        // ❌ SI EL LOGIN ES INCORRECTO
-        else {
+            alert("Usuario o contraseña incorrectos");
 
-            alert("Correo o contraseña incorrectos");
         }
 
     })
-
 
     // Captura errores
     .catch(err => {
 
         console.log("Error login:", err);
+
     });
 
 });

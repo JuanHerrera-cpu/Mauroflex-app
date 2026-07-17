@@ -1,4 +1,10 @@
 console.log("JS funcionando");
+// ======================================
+// CARRITO DE COMPRAS
+// ======================================
+
+// Recupera el carrito guardado o crea uno nuevo si no existe
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
 // 🔥 CONSULTA PRODUCTOS DESDE EL SERVIDOR
@@ -149,7 +155,7 @@ else if (
                 <!-- Botón comprar -->
                 <button onclick="comprar('${producto.nombre}', ${producto.precio})">
 
-                    Comprar
+                    Agregar al carrito
 
                 </button>
 
@@ -183,17 +189,31 @@ function cambiarPrecio(select, precioBase) {
     nuevoPrecio.toLocaleString("es-CO");
 }
 
-
-
-
-// 🛒 SIMULACIÓN DE COMPRA
+// 🛒 AGREGAR PRODUCTOS AL CARRITO
 function comprar(nombre, precio) {
 
-    alert(
-
-        "Compraste: " +
-        nombre +
-        " | Precio base: $" +
-        precio
+    const productoExistente = carrito.find(
+        producto => producto.nombre === nombre
     );
+
+    if (productoExistente) {
+
+        productoExistente.cantidad++;
+
+    } else {
+
+        carrito.push({
+            nombre: nombre,
+            precio: precio,
+            cantidad: 1
+        });
+
+    }
+
+    
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    console.log("Carrito:", carrito);
+
+    alert(nombre + " agregado al carrito.");
 }
