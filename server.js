@@ -374,6 +374,85 @@ if (resultados.length > 0) {
     );
 });
 // =========================
+// INVENTARIO
+// =========================
+
+// CONSULTAR INVENTARIO
+app.get("/inventario", (req, res) => {
+
+    const sql = "SELECT * FROM inventario";
+
+    conexion.query(sql, (err, resultados) => {
+
+        if (err) {
+
+            console.log(err);
+
+            return res.status(500).json({
+                success: false
+            });
+
+        }
+
+        res.json(resultados);
+
+    });
+
+});
+
+
+// GUARDAR PRODUCTO EN INVENTARIO
+app.post("/inventario", (req, res) => {
+
+    const {
+
+        nombre,
+        cantidad,
+        precio
+
+    } = req.body;
+
+    const sql = `
+        INSERT INTO inventario
+        (nombre, cantidad, precio)
+        VALUES (?, ?, ?)
+    `;
+
+    conexion.query(
+
+        sql,
+
+        [nombre, cantidad, precio],
+
+        (err, resultado) => {
+
+            if (err) {
+
+                console.log(err);
+
+                return res.status(500).json({
+
+                    success: false,
+                    mensaje: "Error al guardar."
+
+                });
+
+            }
+
+            res.json({
+
+                success: true,
+                mensaje: "Producto agregado correctamente."
+
+            });
+
+        }
+
+    );
+
+});
+
+// =========================
 // REGISTRAR PEDIDO
 // =========================
 

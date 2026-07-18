@@ -1,41 +1,115 @@
-// esta función se ejecuta cuando presionas el botón AGREGAR
+// ================================
+// CARGAR INVENTARIO AL ABRIR
+// ================================
+window.onload = cargarInventario;
+
+
+// ================================
+// CONSULTAR INVENTARIO
+// ================================
+function cargarInventario() {
+
+    fetch("http://localhost:3001/inventario")
+
+        .then(res => res.json())
+
+        .then(productos => {
+
+            let tabla = document.getElementById("tablaInventario");
+
+            tabla.innerHTML = "";
+
+            productos.forEach(producto => {
+
+                let fila = tabla.insertRow();
+
+                let celdaNombre = fila.insertCell(0);
+                let celdaStock = fila.insertCell(1);
+                let celdaPrecio = fila.insertCell(2);
+
+                celdaNombre.innerText = producto.nombre;
+                celdaStock.innerText = producto.cantidad;
+                celdaPrecio.innerText = "$" + producto.precio;
+
+                if (producto.cantidad <= 10) {
+
+                    celdaStock.style.color = "red";
+                    celdaStock.style.fontWeight = "bold";
+
+                }
+
+            });
+
+        })
+
+        .catch(error => {
+
+            console.log(error);
+
+        });
+
+}
+
+
+// ================================
+// AGREGAR PRODUCTO
+// ================================
 function agregarProducto() {
 
-    // 1️⃣ Capturamos lo que escribe el usuario
     let nombre = document.getElementById("producto").value;
-    let stock = document.getElementById("stock").value;
+
+    let cantidad = document.getElementById("stock").value;
+
     let precio = document.getElementById("precio").value;
 
-    // 2️⃣ Validamos que no esté vacío
-    if (nombre === "" || stock === "" || precio === "") {
+
+    if (nombre === "" || cantidad === "" || precio === "") {
+
         alert("Debe completar todos los campos");
-        return; // detiene la función
+
+        return;
+
     }
 
-    // 3️⃣ Buscamos el cuerpo de la tabla
-    let tabla = document.getElementById("tablaInventario");
 
-    // 4️⃣ Creamos una nueva fila
-    let fila = tabla.insertRow();
+    fetch("http://localhost:3001/inventario", {
 
-    // 5️⃣ Creamos las celdas
-    let celdaNombre = fila.insertCell(0);
-    let celdaStock = fila.insertCell(1);
-    let celdaPrecio = fila.insertCell(2);
+        method: "POST",
 
-    // 6️⃣ Colocamos los datos dentro
-    celdaNombre.innerText = nombre;
-    celdaStock.innerText = stock;
-    celdaPrecio.innerText = "$" + precio;
+        headers: {
 
-    // 7️⃣ Si el stock es bajo lo ponemos rojo
-    if (stock <= 10) {
-        celdaStock.style.color = "red";
-        celdaStock.style.fontWeight = "bold";
-    }
+            "Content-Type": "application/json"
 
-    // 8️⃣ Limpiamos los campos
-    document.getElementById("producto").value = "";
-    document.getElementById("stock").value = "";
-    document.getElementById("precio").value = "";
+        },
+
+        body: JSON.stringify({
+
+            nombre: nombre,
+            cantidad: cantidad,
+            precio: precio
+
+        })
+
+    })
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        alert(data.mensaje);
+
+        document.getElementById("producto").value = "";
+        document.getElementById("stock").value = "";
+        document.getElementById("precio").value = "";
+
+        cargarInventario();
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+    });
+
 }
