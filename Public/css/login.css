@@ -1,0 +1,24 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+
+    background-color: #ffffff;
+    color: #333;
+    font-family: "Georgia", serif;
+}
+
+.imagen-circulo{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+h1{
+    color: #e91e63;
+    text-align: center;
+}

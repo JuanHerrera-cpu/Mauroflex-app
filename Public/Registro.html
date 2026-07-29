@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro</title>
 
-  <style>
-    body{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registro</title>
+
+    <link rel="stylesheet" href="css/registro.css">
+
 </head>
 
 <body>
 
-  <h3>REGISTRO DE USUARIO</h3>
+    <h3>REGISTRO DE USUARIO</h3>
 
-  <img src="/img/logo.jpeg" width="180">
+    <img src="img/logo.jpeg" class="logo-registro">
 
-  <!-- 🔥 FORM CONECTADO AL BACKEND -->
-  <form action="/registro" method="POST">
+    <!-- 🔥 FORM CONECTADO AL BACKEND -->
+    <form action="/registro" method="POST">
 
-    <label>Nombres</label><br>
-    <input type="text" name="nombre" required><br><br>
+        <label>Nombres</label><br>
+        <input type="text" name="nombre" required><br><br>
 
-    <label>Apellidos</label><br>
-    <input type="text" name="apellido" required><br><br>
+        <label>Apellidos</label><br>
+        <input type="text" name="apellido" required><br><br>
 
-    <label>Tipo de documento</label><br>
-    <select name="tipoDocumento" required>
-      <option value="">Seleccione...</option>
-      <option value="CC">Cédula de ciudadanía</option>
-      <option value="NIT">NIT</option>
-      <option value="CE">Cédula extranjera</option>
-    </select><br><br>
+        <label>Tipo de documento</label><br>
+        <select name="tipoDocumento" required>
+            <option value="">Seleccione...</option>
+            <option value="CC">Cédula de ciudadanía</option>
+            <option value="NIT">NIT</option>
+            <option value="CE">Cédula extranjera</option>
+        </select><br><br>
 
-    <label>Número de documento</label><br>
-    <input type="text" name="documento" pattern="[0-9]+" required><br><br>
+        <label>Número de documento</label><br>
+        <input type="text" name="documento" pattern="[0-9]+" required><br><br>
 
-    <label>Correo electronico</label><br>
-    <input type="email" name="correo" required><br><br>
+        <label>Correo electrónico</label><br>
+        <input type="email" name="correo" required><br><br>
 
-    <label>Contraseña</label><br> 
-    <input type="password" name="clave" required><br><br>
+        <label>Contraseña</label><br>
+        <input type="password" name="clave" required><br><br>
 
-    <label>Confirmar contraseña</label><br>
-    <input type="password" required><br><br>
+        <label>Confirmar contraseña</label><br>
+        <input type="password" required><br><br>
 
-    <button type="submit">Enviar</button>
+        <button type="submit">Enviar</button>
 
-  </form>
+    </form>
 
 </body>
 </html>

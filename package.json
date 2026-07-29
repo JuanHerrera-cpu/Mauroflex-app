@@ -1,13 +1,13 @@
 {
-  "name": "code",
+  "name": "mauroflex",
   "version": "1.0.0",
-  "description": "Proyecto SENA\r Gestion y confirmacion de pedidos de colchones mauroflex\r Autor: Juan Camilo Herrera",
-  "main": "index.js",
+  "description": "Proyecto SENA - Gestión y Confirmación de Pedidos de Colchones Mauroflex",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan Camilo Herrera",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
