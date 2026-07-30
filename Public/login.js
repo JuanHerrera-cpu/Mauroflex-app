@@ -43,6 +43,7 @@ document.getElementById("formLogin").addEventListener("submit", function (e) {
 
             // Guarda el correo
             sessionStorage.setItem("usuarioActivo", data.correo);
+            console.log("Bienvenido:", data.correo);
 
             window.location.href = "menu.html";
 

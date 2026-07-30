@@ -100,7 +100,13 @@ else if (
         // =========================
         // CREAR TARJETA PRODUCTO
         // =========================
-
+const precios = {
+    precio100: producto.precio100,
+    precio120: producto.precio120,
+    precio140: producto.precio140,
+    precio160: producto.precio160,
+    precio200: producto.precio200
+};
         const card = `
 
             <div class="card">
@@ -114,46 +120,33 @@ else if (
 
 
                 <!-- Precio -->
-                <p>
+             <p>
 
-                    Precio:
-                    $<span class="precio-final">
+    Precio:
+    $<span class="precio-final">
 
-                        ${producto.precio || 0}
+        ${producto.precio100.toLocaleString("es-CO")}
 
-                    </span>
+    </span>
 
-                </p>
+</p>
 
+<select onchange='cambiarPrecio(this, ${JSON.stringify(precios)})'>
 
-                <!-- Selector tamaños -->
-                <select onchange="cambiarPrecio(this, ${producto.precio || 0})">
+    <option value="precio100">100 x 190</option>
 
-                    <option value="1">
-                        Sencillo
-                    </option>
+    <option value="precio120">120 x 190</option>
 
-                    <option value="1.2">
-                        Semidoble
-                    </option>
+    <option value="precio140">140 x 190</option>
 
-                    <option value="1.4">
-                        Doble
-                    </option>
+    <option value="precio160">160 x 190</option>
 
-                    <option value="1.8">
-                        Queen
-                    </option>
+    <option value="precio200">200 x 200</option>
 
-                    <option value="2">
-                        King
-                    </option>
-
-                </select>
-
+</select>
 
                 <!-- Botón comprar -->
-                <button onclick="comprar('${producto.nombre}', ${producto.precio})">
+               <button onclick='comprar("${producto.nombre}", ${JSON.stringify(precios)}, this)'>
 
                     Agregar al carrito
 
@@ -173,27 +166,40 @@ else if (
 
 
 // 🔥 CAMBIAR PRECIO
-function cambiarPrecio(select, precioBase) {
+function cambiarPrecio(select, precios) {
 
-    // Obtiene multiplicador
-    const factor = parseFloat(select.value);
+    // Obtiene la medida seleccionada
+    const medida = select.value;
 
-    // Calcula nuevo precio
-    const nuevoPrecio = precioBase * factor;
+    // Busca el precio correspondiente
+    const nuevoPrecio = precios[medida];
 
-    // Busca contenedor padre
+    // Busca el contenedor de la tarjeta
     const contenedor = select.parentElement;
 
-    // Actualiza precio visualmente
+    // Actualiza el precio mostrado
     contenedor.querySelector(".precio-final").innerText =
-    nuevoPrecio.toLocaleString("es-CO");
+        Number(nuevoPrecio).toLocaleString("es-CO");
 }
-
 // 🛒 AGREGAR PRODUCTOS AL CARRITO
-function comprar(nombre, precio) {
+function comprar(nombre, precios, boton) {
 
+    // Busca el select de la tarjeta
+    const tarjeta = boton.parentElement;
+
+    const select = tarjeta.querySelector("select");
+
+    // Medida seleccionada
+    const medida = select.value;
+
+    // Precio correspondiente
+    const precio = precios[medida];
+
+    // Busca si ya existe en el carrito
     const productoExistente = carrito.find(
-        producto => producto.nombre === nombre
+        producto =>
+            producto.nombre === nombre &&
+            producto.medida === medida
     );
 
     if (productoExistente) {
@@ -203,17 +209,23 @@ function comprar(nombre, precio) {
     } else {
 
         carrito.push({
+
             nombre: nombre,
+
+            medida: medida,
+
             precio: precio,
+
             cantidad: 1
+
         });
 
     }
 
-    
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    console.log("Carrito:", carrito);
+    console.log(carrito);
 
     alert(nombre + " agregado al carrito.");
+
 }
