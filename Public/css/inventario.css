@@ -82,3 +82,54 @@ tr:hover {
     color: red;
     font-weight: bold;
 }
+/* =========================
+   BOTONES DE ACCIONES
+========================= */
+
+.btn-editar,
+.btn-eliminar{
+
+    width: 35px;
+    height: 35px;
+
+    padding: 0;
+
+    margin: 2px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+.btn-editar{
+
+    background:#3498db;
+
+    color:white;
+
+}
+
+.btn-editar:hover{
+
+    background:#2980b9;
+
+}
+
+.btn-eliminar{
+
+    background:#e74c3c;
+
+    color:white;
+
+}
+
+.btn-eliminar:hover{
+
+    background:#c0392b;
+
+}

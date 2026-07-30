@@ -451,7 +451,103 @@ app.post("/inventario", (req, res) => {
     );
 
 });
+// ================================
+// ACTUALIZAR PRODUCTO DEL INVENTARIO
+// ================================
+app.put("/inventario/:id", (req, res) => {
 
+    const id = req.params.id;
+
+    const {
+
+        nombre,
+        cantidad,
+        precio
+
+    } = req.body;
+
+    const sql = `
+        UPDATE inventario
+        SET nombre = ?, cantidad = ?, precio = ?
+        WHERE id = ?
+    `;
+
+    conexion.query(
+
+        sql,
+
+        [nombre, cantidad, precio, id],
+
+        (err, resultado) => {
+
+            if (err) {
+
+                console.log(err);
+
+                return res.status(500).json({
+
+                    success: false,
+                    mensaje: "Error al actualizar."
+
+                });
+
+            }
+
+            res.json({
+
+                success: true,
+                mensaje: "Producto actualizado correctamente."
+
+            });
+
+        }
+
+    );
+
+});
+// ELIMINAR PRODUCTO DEL INVENTARIO
+app.delete("/inventario/:id", (req, res) => {
+
+    const id = req.params.id;
+
+    const sql = `
+        DELETE FROM inventario
+        WHERE id = ?
+    `;
+
+    conexion.query(
+
+        sql,
+
+        [id],
+
+        (err, resultado) => {
+
+            if (err) {
+
+                console.log(err);
+
+                return res.status(500).json({
+
+                    success: false,
+                    mensaje: "Error al eliminar."
+
+                });
+
+            }
+
+            res.json({
+
+                success: true,
+                mensaje: "Producto eliminado correctamente."
+
+            });
+
+        }
+
+    );
+
+});
 // =========================
 // REGISTRAR PEDIDO
 // =========================
