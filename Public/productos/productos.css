@@ -66,7 +66,8 @@ body {
     transition: transform 0.2s;
 
     /* Tamaño uniforme */
-    width: 220px;
+    width: 100%;
+max-width: 260px;
 
     /* FLEX para organizar contenido */
     display: flex;
@@ -192,4 +193,52 @@ body {
 
     /* Forma circular */
     border-radius: 50%;
+}
+/* ===================================
+   RESPONSIVE PRODUCTOS
+=================================== */
+
+@media (max-width:768px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+    #contenedor-productos{
+
+        grid-template-columns:1fr;
+
+        justify-items:center;
+
+        gap:15px;
+
+    }
+
+    .card{
+
+        width:100%;
+        max-width:320px;
+
+    }
+
+    .card h3{
+
+        font-size:20px;
+
+    }
+
+    .card p{
+
+        font-size:17px;
+
+    }
+
+    .img-producto{
+
+        height:180px;
+
+    }
+
 }
