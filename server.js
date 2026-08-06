@@ -39,17 +39,14 @@ app.use(express.static(path.join(__dirname, "Public")));
 // CONEXIÓN MYSQL
 // =========================
 
+
 const conexion = mysql.createConnection({
-
-    host: "localhost",
-
-    user: "root",
-
-    password: "Isabela01*",
-
-    database: "mauroflex"
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT
 });
-
 
 
 
@@ -572,8 +569,10 @@ app.post("/pedidos", (req, res) => {
 // SERVIDOR
 // =========================
 
-// Inicia servidor puerto 3001
-app.listen(3001, () => {
+const PORT = process.env.PORT || 3001;
 
-    console.log("Servidor corriendo en puerto 3001");
+app.listen(PORT, () => {
+
+    console.log(`Servidor corriendo en puerto ${PORT}`);
+
 });
