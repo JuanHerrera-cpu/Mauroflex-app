@@ -13,7 +13,7 @@ let idEditar = null;
 // ================================
 function cargarInventario() {
 
-    fetch("http://localhost:3001/inventario")
+   fetch("/inventario")
 
         .then(res => res.json())
 
@@ -89,16 +89,13 @@ function agregarProducto() {
     // ================================
 // DEFINIR SI ES AGREGAR O ACTUALIZAR
 // ================================
-let url = "http://localhost:3001/inventario";
+let url = "/inventario";
 
 let metodo = "POST";
 
 if (idEditar !== null) {
-
-    url = "http://localhost:3001/inventario/" + idEditar;
-
+    url = "/inventario/" + idEditar;
     metodo = "PUT";
-
 }
 
 fetch(url, {
